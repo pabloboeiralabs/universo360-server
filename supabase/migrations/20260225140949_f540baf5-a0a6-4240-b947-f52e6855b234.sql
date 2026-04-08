@@ -1,0 +1,1 @@
+UPDATE public.franchises SET payment_gateway = 'asaas', updated_at = now() WHERE id = '29cef237-f25c-40e8-b6cb-cca50da6561b';

@@ -1,0 +1,1 @@
+ALTER TABLE public.email_logs ADD COLUMN IF NOT EXISTS cc_email text;

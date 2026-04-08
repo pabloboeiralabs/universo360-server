@@ -1,0 +1,1 @@
+ALTER TABLE public.franchises ADD COLUMN asaas_webhook_token text;

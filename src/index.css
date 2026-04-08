@@ -1,0 +1,496 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+
+#lovable-badge {
+  display: none !important;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Light Mode */
+  :root {
+    --background: 270 20% 94%;
+    --foreground: 277 80% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 277 80% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 277 80% 8%;
+
+    --primary: 298 55% 38%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 239 35% 85%;
+    --secondary-foreground: 239 50% 15%;
+
+    --muted: 270 15% 88%;
+    --muted-foreground: 270 40% 35%;
+
+    --accent: 239 45% 78%;
+    --accent-foreground: 239 60% 12%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 291 40% 70%;
+    --input: 0 0% 100%;
+    --ring: 298 55% 38%;
+
+    --radius: 0rem;
+
+    /* Sidebar Colors - Light Mode */
+    --sidebar-background: 277 89% 10%;
+    --sidebar-foreground: 270 60% 92%;
+    --sidebar-primary: 298 55% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 291 60% 22%;
+    --sidebar-accent-foreground: 270 60% 92%;
+    --sidebar-border: 291 50% 20%;
+    --sidebar-ring: 298 55% 60%;
+
+    /* Custom Planetarium Colors */
+    --cosmic-blue: 239 29% 54%;
+    --cosmic-purple: 298 43% 34%;
+    --cosmic-pink: 340 60% 90%;
+    --cosmic-cyan: 239 40% 65%;
+    --space-dark: 277 89% 10%;
+    --space-mid: 291 69% 17%;
+    --glow-blue: 239 29% 54%;
+
+    /* Gradients */
+    --gradient-cosmic: linear-gradient(135deg, hsl(277 89% 10%) 0%, hsl(291 69% 17%) 50%, hsl(298 43% 34%) 100%);
+    --gradient-card: linear-gradient(145deg, hsla(291, 69%, 17%, 0.5) 0%, hsla(298, 43%, 34%, 0.3) 100%);
+    --gradient-button: linear-gradient(90deg, hsl(298 55% 38%) 0%, hsl(239 45% 55%) 100%);
+    --gradient-text: linear-gradient(90deg, hsl(239 45% 55%) 0%, hsl(298 55% 38%) 60%, hsl(270 40% 70%) 100%);
+
+    /* Shadows */
+    --shadow-glow: 0 0 30px hsla(298, 55%, 38%, 0.4);
+    --shadow-card: 0 4px 20px hsla(277, 50%, 50%, 0.2);
+  }
+
+  /* Dark Mode */
+  .dark {
+    --background: 277 89% 5%;
+    --foreground: 0 0% 95%;
+
+    --card: 280 60% 14%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 280 60% 14%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 298 60% 62%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 239 35% 28%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 280 45% 18%;
+    --muted-foreground: 270 30% 68%;
+
+    --accent: 239 45% 35%;
+    --accent-foreground: 0 0% 95%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 291 40% 32%;
+    --input: 280 50% 18%;
+    --ring: 298 60% 62%;
+
+    /* Sidebar Colors - Dark Mode */
+    --sidebar-background: 277 89% 4%;
+    --sidebar-foreground: 0 0% 92%;
+    --sidebar-primary: 298 60% 62%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 291 55% 20%;
+    --sidebar-accent-foreground: 0 0% 92%;
+    --sidebar-border: 291 50% 24%;
+    --sidebar-ring: 298 60% 62%;
+
+    /* Gradients - Dark Mode */
+    --gradient-button: linear-gradient(90deg, hsl(298 60% 50%) 0%, hsl(239 45% 55%) 100%);
+    --shadow-glow: 0 0 30px hsla(298, 60%, 62%, 0.45);
+    --shadow-card: 0 8px 32px hsla(277, 89%, 3%, 0.7);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+
+  *::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  body {
+    @apply bg-background text-foreground font-poppins;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Sidebar active item — concave notch effect connecting to main content */
+  .sidebar-active-item {
+    margin-right: -13px; /* overcome px-3 (12px) + 1px border */
+    padding-right: 25px;
+    border-radius: 10px 0 0 10px;
+  }
+
+  .sidebar-active-item::before,
+  .sidebar-active-item::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background: hsl(var(--sidebar-background));
+  }
+
+  .sidebar-active-item::before {
+    top: -10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 4px 4px 0 4px hsl(var(--background));
+  }
+
+  .sidebar-active-item::after {
+    bottom: -10px;
+    border-top-right-radius: 10px;
+    box-shadow: 4px -4px 0 4px hsl(var(--background));
+  }
+  .glass-card {
+    @apply bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/10;
+    box-shadow: var(--shadow-card);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+
+  .glass-card-hover:hover {
+    @apply border-white/20 transform -translate-y-1;
+    box-shadow: 0 12px 40px hsla(0, 0%, 0%, 0.4);
+  }
+
+  .cosmic-gradient {
+    background: var(--gradient-cosmic);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(90deg, hsl(200 90% 70%) 0%, hsl(280 80% 75%) 50%, hsl(320 80% 75%) 100%);
+  }
+
+  .glow-effect {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .btn-primary {
+    @apply bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-6 py-3 rounded transition-all duration-300;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 20px hsla(270, 70%, 55%, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    @apply border border-white/30 hover:bg-white/10 text-foreground font-medium px-6 py-3 rounded transition-all duration-300;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-muted-foreground text-lg max-w-2xl mx-auto;
+  }
+
+  .feature-icon {
+    @apply w-12 h-12 rounded-xl flex items-center justify-center text-primary;
+    background: linear-gradient(135deg, hsla(270, 70%, 55%, 0.25) 0%, hsla(290, 60%, 50%, 0.15) 100%);
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+
+  .animate-twinkle {
+    animation: twinkle 3s ease-in-out infinite;
+  }
+
+  .parallax-fixed {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  /* Shooting star animation */
+  .shooting-star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: linear-gradient(45deg, white, transparent);
+    border-radius: 50%;
+    opacity: 0;
+    animation: shooting 8s ease-in-out infinite;
+  }
+
+  .shooting-star::before {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent);
+    transform: translateX(-100%) translateY(-50%);
+    top: 50%;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes twinkle {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.3;
+      transform: scale(0.8);
+    }
+  }
+
+  @keyframes shooting {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0) rotate(-45deg);
+    }
+    2% {
+      opacity: 1;
+    }
+    8% {
+      opacity: 1;
+      transform: translate(150px, 150px) rotate(-45deg);
+    }
+    10% {
+      opacity: 0;
+      transform: translate(200px, 200px) rotate(-45deg);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(200px, 200px) rotate(-45deg);
+    }
+  }
+
+  /* Nebula animations */
+  .animate-nebula-1 {
+    animation: nebula-drift-1 25s ease-in-out infinite;
+  }
+
+  .animate-nebula-2 {
+    animation: nebula-drift-2 30s ease-in-out infinite;
+  }
+
+  .animate-nebula-3 {
+    animation: nebula-drift-3 20s ease-in-out infinite;
+  }
+
+  .animate-nebula-4 {
+    animation: nebula-drift-4 35s ease-in-out infinite;
+  }
+
+  .animate-nebula-5 {
+    animation: nebula-drift-5 28s ease-in-out infinite;
+  }
+
+  @keyframes nebula-drift-1 {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.2;
+    }
+    25% {
+      transform: translate(50px, 30px) scale(1.1);
+      opacity: 0.25;
+    }
+    50% {
+      transform: translate(20px, 60px) scale(0.95);
+      opacity: 0.15;
+    }
+    75% {
+      transform: translate(-30px, 20px) scale(1.05);
+      opacity: 0.22;
+    }
+  }
+
+  @keyframes nebula-drift-2 {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.15;
+    }
+    33% {
+      transform: translate(-40px, 50px) scale(1.15);
+      opacity: 0.2;
+    }
+    66% {
+      transform: translate(30px, -20px) scale(0.9);
+      opacity: 0.12;
+    }
+  }
+
+  @keyframes nebula-drift-3 {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.1;
+    }
+    50% {
+      transform: translate(60px, -40px) scale(1.2);
+      opacity: 0.18;
+    }
+  }
+
+  @keyframes nebula-drift-4 {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.1;
+    }
+    40% {
+      transform: translate(-50px, -30px) scale(1.1);
+      opacity: 0.15;
+    }
+    80% {
+      transform: translate(40px, 40px) scale(0.95);
+      opacity: 0.08;
+    }
+  }
+
+  @keyframes nebula-drift-5 {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.15;
+    }
+    25% {
+      transform: translate(30px, -50px) scale(1.1);
+      opacity: 0.18;
+    }
+    75% {
+      transform: translate(-40px, 30px) scale(0.9);
+      opacity: 0.12;
+    }
+  }
+
+  /* Playful planets animations */
+  .animate-float-gentle {
+    animation: float-gentle 8s ease-in-out infinite;
+  }
+
+  .animate-planet-rotate {
+    animation: planet-rotate 40s linear infinite;
+  }
+
+  .animate-orbit {
+    animation: orbit 10s linear infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 60s linear infinite;
+  }
+
+  .animate-comet {
+    animation: comet 15s linear infinite;
+  }
+
+  @keyframes float-gentle {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-15px) rotate(2deg);
+    }
+    50% {
+      transform: translateY(-25px) rotate(0deg);
+    }
+    75% {
+      transform: translateY(-10px) rotate(-2deg);
+    }
+  }
+
+  @keyframes planet-rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes orbit {
+    from {
+      transform: rotate(0deg) translateX(50px) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(50px) rotate(-360deg);
+    }
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes comet {
+    0% {
+      opacity: 0;
+      transform: translateX(-100px) translateY(0);
+    }
+    5% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+      transform: translateX(calc(100vw + 200px)) translateY(100px);
+    }
+    51% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-100px) translateY(0);
+    }
+  }
+}

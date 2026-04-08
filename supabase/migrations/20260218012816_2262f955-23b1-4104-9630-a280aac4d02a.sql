@@ -1,0 +1,1 @@
+ALTER TABLE events ADD COLUMN sales_deadline timestamp with time zone DEFAULT NULL;

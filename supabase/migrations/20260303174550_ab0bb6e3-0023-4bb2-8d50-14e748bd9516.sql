@@ -1,0 +1,1 @@
+ALTER TABLE public.commission_beneficiaries ADD COLUMN IF NOT EXISTS whatsapp text;

@@ -1,0 +1,1 @@
+ALTER TABLE public.events ADD COLUMN cash_password text DEFAULT NULL;

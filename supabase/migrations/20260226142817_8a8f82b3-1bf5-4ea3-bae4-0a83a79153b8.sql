@@ -1,0 +1,1 @@
+ALTER TABLE public.commission_beneficiaries ADD COLUMN pix_key text, ADD COLUMN pix_key_type text;

@@ -1,0 +1,88 @@
+project_id = "zreuqsfwgbhrvqprxoyg"
+
+[functions.send-refund-receipt]
+verify_jwt = false
+
+[functions.refund-payment]
+verify_jwt = false
+
+[functions.create-payment]
+verify_jwt = false
+
+[functions.payment-webhook]
+verify_jwt = false
+
+[functions.send-contact-email]
+verify_jwt = false
+
+[functions.create-checkout]
+verify_jwt = false
+
+[functions.validate-mercadopago]
+verify_jwt = false
+
+[functions.register-free-ticket]
+verify_jwt = false
+
+[functions.check-payment-status]
+verify_jwt = false
+
+[functions.process-payment]
+verify_jwt = false
+
+[functions.send-receipt]
+verify_jwt = false
+
+[functions.create-franchise-user]
+verify_jwt = false
+
+[functions.update-admin-password]
+verify_jwt = false
+
+[functions.public-student-list]
+verify_jwt = false
+
+[functions.validate-asaas]
+verify_jwt = false
+
+[functions.register-cash-ticket]
+verify_jwt = false
+
+[functions.mp-oauth-start]
+verify_jwt = false
+
+[functions.mp-oauth-callback]
+verify_jwt = false
+
+[functions.refresh-mp-token]
+verify_jwt = false
+
+[functions.mp-oauth-manual]
+verify_jwt = false
+
+[functions.validate-cash-password]
+verify_jwt = false
+
+[functions.validate-pagbank]
+verify_jwt = false
+
+[functions.send-credentials]
+verify_jwt = false
+
+[functions.reconcile-pending-payments]
+verify_jwt = false
+
+[functions.cleanup-pending-tickets]
+verify_jwt = false
+
+[functions.admin-credentials]
+verify_jwt = false
+
+[functions.zcloud-proxy]
+verify_jwt = false
+
+[functions.zcloud-storage]
+verify_jwt = false
+
+[functions.zcloud-setup]
+verify_jwt = false

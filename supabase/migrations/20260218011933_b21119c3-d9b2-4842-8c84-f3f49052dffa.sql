@@ -1,0 +1,1 @@
+ALTER TABLE events ADD COLUMN supervisor_commission_pct numeric DEFAULT 0;
